@@ -156,8 +156,7 @@ def get_readable_message():
                 msg += f"\n<b>Size: </b>{download.size()}"
             if download.message.chat.type != 'private':
                 uname =download.message.from_user.first_name
-                msg += f"\n<b><a href='{download.message.link}'>Source</a>:</b> {uname}
-                msg += f"\n<b>Id :</b> <code>{download.message.from_user.id}</code>"
+                msg += f"\n<b><a href='{download.message.link}'>Source</a>:</b> {uname} | Id :</b> <code>{download.message.from_user.id}</code>"
             else:
                 msg += ''
             msg += f"\n⌦ <code>/{BotCommands.CancelMirror}_{download.gid()}</code>"
