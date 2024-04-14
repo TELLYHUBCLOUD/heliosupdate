@@ -116,14 +116,15 @@ def get_progress_bar_string(status):
     p = 0 if total == 0 else round(completed * 100 / total)
     p = min(max(p, 0), 100)
     cFull = p // 8
-    p_str = '▰' * cFull
-    p_str += '▱' * (12 - cFull)
+    p_str = '⬤' * cFull
+    p_str += '◯' * (12 - cFull)
     p_str = f"[{p_str}]"
     return p_str
 
 def get_readable_message():
     with download_dict_lock:
-        msg = ""
+        msg = f'<a href="https://t.me/TELLYCLOUD_Bots"><b>❖𝐓𝐄𝐋𝐋𝐘𝐂𝐋𝐎𝐔𝐃 𝐁𝐎𝐓𝐒™❖</b></a>'
+        msg += f'\n\n'
         if STATUS_LIMIT is not None:
             tasks = len(download_dict)
             global pages
@@ -135,10 +136,10 @@ def get_readable_message():
             msg += f"<b>Name:</b> <code>{escape(str(download.name()))}</code>"
             msg += f"\n<b>Status:</b> <i>{download.status()}</i> | {download.eng()}"
             if download.status() not in [MirrorStatus.STATUS_SPLITTING, MirrorStatus.STATUS_SEEDING]:
-                msg += f"\n{get_progress_bar_string(download)} {download.progress()}"
-                msg += f"\n<b>Processed:</b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
-                msg += f"\n<b>Speed:</b> {download.speed()} | <b>ETA:</b> {download.eta()}"
-                msg += f"\n<b>Time Elapsed: </b>{get_readable_time(time() - download.message.date.timestamp())}"
+                msg += f"\n⌛ {get_progress_bar_string(download)} {download.progress()}"
+                msg += f"\n✿ <b>Processed:</b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
+                msg += f"\n✿ <b>Speed:</b> {download.speed()} | <b>ETA:</b> {download.eta()}"
+                msg += f"\n✿ <b>Time Elapsed: </b>{get_readable_time(time() - download.message.date.timestamp())}"
                 if hasattr(download, 'seeders_num'):
                     try:
                         msg += f"\n<b>Seeders:</b> {download.seeders_num()} | <b>Leechers:</b> {download.leechers_num()}"
@@ -146,11 +147,11 @@ def get_readable_message():
                         pass
 
             elif download.status() == MirrorStatus.STATUS_SEEDING:
-                msg += f"\n<b>Size: </b>{download.size()}"
-                msg += f"\n<b>Speed: </b>{download.upload_speed()}"
-                msg += f" | <b>Uploaded: </b>{download.uploaded_bytes()}"
-                msg += f"\n<b>Ratio: </b>{download.ratio()}"
-                msg += f" | <b>Time: </b>{download.seeding_time()}"
+                msg += f"\n⬤ <b>Size: </b>{download.size()}"
+                msg += f"\n⬤ <b>Speed: </b>{download.upload_speed()}"
+                msg += f"\n⬤ <b>Uploaded: </b>{download.uploaded_bytes()}"
+                msg += f"\n⬤ <b>Ratio: </b>{download.ratio()}"
+                msg += f"\n⬤ <b>Time: </b>{download.seeding_time()}"
             else:
                 msg += f"\n<b>Size: </b>{download.size()}"
             if download.message.chat.type != 'private':
