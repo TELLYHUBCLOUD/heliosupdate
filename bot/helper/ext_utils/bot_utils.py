@@ -135,18 +135,18 @@ def get_readable_message():
         for index, download in enumerate(list(download_dict.values())[COUNT:], start=1):
             msg += f"<b>♛ NAME:</b> <code>{escape(str(download.name()))}</code>"
             msg += f"\n"
-            msg += f"\n<b>☻ Status:</b> <i>{download.status()}</i> |<b> Engine:-</b> {download.eng()}"
+            msg += f"\n<b>☻ Status:</b> <i>{download.status()}</i>|<b>Eng:</b> {download.eng()}"
             if download.status() not in [MirrorStatus.STATUS_SPLITTING, MirrorStatus.STATUS_SEEDING]:
                 msg += f"\n⌛ {get_progress_bar_string(download)} {download.progress()}"
                 msg += f"\n"
                 msg += f"\n💠 <b>Processed:</b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
                 msg += f"\n💠 <b>Speed:</b> {download.speed()}"
-                msg += f"\n💠<b>ETA:</b> {download.eta()}"
+                msg += f"\n💠 <b>ETA:</b> {download.eta()}"
                 msg += f"\n💠 <b>Time Elapsed: </b>{get_readable_time(time() - download.message.date.timestamp())}"
                 if hasattr(download, 'seeders_num'):
                     try:
                         msg += f"\n💠 <b>Seeders:</b> {download.seeders_num()}" 
-                        msg += f"\n💠<b>Leechers:</b> {download.leechers_num()}"
+                        msg += f"\n💠 <b>Leechers:</b> {download.leechers_num()}"
                     except:
                         pass
 
