@@ -124,7 +124,7 @@ def get_progress_bar_string(status):
 def get_readable_message():
     with download_dict_lock:
         msg = f'<a href="https://t.me/TELLYCLOUD_Bots"><b>❖𝐓𝐄𝐋𝐋𝐘𝐂𝐋𝐎𝐔𝐃 𝐁𝐎𝐓𝐒™❖</b></a>'
-        msg += f'\n\n'
+        msg += f'\n'
         if STATUS_LIMIT is not None:
             tasks = len(download_dict)
             global pages
@@ -134,11 +134,11 @@ def get_readable_message():
                 globals()['PAGE_NO'] -= 1
         for index, download in enumerate(list(download_dict.values())[COUNT:], start=1):
             msg += f"<b>♛ NAME:</b> <code>{escape(str(download.name()))}</code>"
-            msg += f"\n\n"
-            msg += f"\n<b>☻ Status:</b> <i>{download.status()}</i> |"
+            msg += f"\n"
+            msg += f"\n<b>☻ Status:</b> <i>{download.status()}</i> |<b> Engine:-</b> {download.eng()}"
             if download.status() not in [MirrorStatus.STATUS_SPLITTING, MirrorStatus.STATUS_SEEDING]:
                 msg += f"\n⌛ {get_progress_bar_string(download)} {download.progress()}"
-                msg += f"\n\n"
+                msg += f"\n"
                 msg += f"\n💠 <b>Processed:</b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
                 msg += f"\n💠 <b>Speed:</b> {download.speed()} | <b>ETA:</b> {download.eta()}"
                 msg += f"\n💠 <b>Time Elapsed: </b>{get_readable_time(time() - download.message.date.timestamp())}"
@@ -152,7 +152,6 @@ def get_readable_message():
                 msg += f"\n💠 <b>Size: </b>{download.size()}"
                 msg += f"\n💠 <b>Speed: </b>{download.upload_speed()}"
                 msg += f"\n💠 <b>Uploaded: </b>{download.uploaded_bytes()}"
-                msg += f"\n💠 <b>Engine: </b> {download.eng()}"
                 msg += f"\n💠 <b>Ratio: </b>{download.ratio()}"
                 msg += f"\n💠 <b>Time: </b>{download.seeding_time()}"
             else:
@@ -193,8 +192,8 @@ def get_readable_message():
         bmsg += f"\n❆ <b>FREE:</b> {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}"
         bmsg += f"\n❆ <b>RAM:</b> {virtual_memory().percent}%"
         bmsg += f"\n❆ <b>UPTIME:</b> {get_readable_time(time() - botStartTime)}"
-        bmsg += f"\n❆ <b>DOWNLOADING:</b> {get_readable_file_size(dl_speed)}/s"
-        bmsg += f"\n❆ <b>UPLOADING:</b> {get_readable_file_size(up_speed)}/s"
+        bmsg += f"\n❆ <b>DOWNLOADING SPEED:</b> {get_readable_file_size(dl_speed)}/s"
+        bmsg += f"\n❆ <b>UPLOADING SPEED:</b> {get_readable_file_size(up_speed)}/s"
         buttons = ButtonMaker()
         buttons.sbutton("Statistics", str(FOUR))
         sbutton = buttons.build_menu(1)
