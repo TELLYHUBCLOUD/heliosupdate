@@ -124,7 +124,7 @@ def get_progress_bar_string(status):
 def get_readable_message():
     with download_dict_lock:
         msg = f'<a href="https://t.me/TELLYCLOUD_Bots"><b>❖𝐓𝐄𝐋𝐋𝐘𝐂𝐋𝐎𝐔𝐃 𝐁𝐎𝐓𝐒™❖</b></a>'
-        msg += f'\n'
+        msg += f'\n\n'
         if STATUS_LIMIT is not None:
             tasks = len(download_dict)
             global pages
@@ -140,11 +140,13 @@ def get_readable_message():
                 msg += f"\n⌛ {get_progress_bar_string(download)} {download.progress()}"
                 msg += f"\n"
                 msg += f"\n💠 <b>Processed:</b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
-                msg += f"\n💠 <b>Speed:</b> {download.speed()} | <b>ETA:</b> {download.eta()}"
+                msg += f"\n💠 <b>Speed:</b> {download.speed()}"
+                msg += f"\n💠<b>ETA:</b> {download.eta()}"
                 msg += f"\n💠 <b>Time Elapsed: </b>{get_readable_time(time() - download.message.date.timestamp())}"
                 if hasattr(download, 'seeders_num'):
                     try:
-                        msg += f"\n<b>Seeders:</b> {download.seeders_num()} | <b>Leechers:</b> {download.leechers_num()}"
+                        msg += f"\n💠 <b>Seeders:</b> {download.seeders_num()}" 
+                        msg += f"\n💠<b>Leechers:</b> {download.leechers_num()}"
                     except:
                         pass
 
