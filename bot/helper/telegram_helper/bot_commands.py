@@ -35,7 +35,8 @@ class _BotCommands:
         self.CancelAllCommand = getCommand('CANCEL_ALL_CMD', f'cancelall{CMD_INDEX}')
         self.ListCommand = getCommand('LIST_CMD', f'list{CMD_INDEX}')
         self.SearchCommand = getCommand('SEARCH_CMD', f'search{CMD_INDEX}')
-        self.StatusCommand = getCommand('STATUS_CMD', f'status{CMD_INDEX}', f'sall')
+        self.StatusCommand = getCommand('STATUS_CMD', f'status{CMD_INDEX}')
+        self.StatusCommand = getCommand('STATUS_CMD', f'sall')
         self.AuthorizedUsersCommand = f'users{CMD_INDEX}'
         self.AuthorizeCommand = f'authorize{CMD_INDEX}'
         self.UnAuthorizeCommand = f'unauthorize{CMD_INDEX}'
