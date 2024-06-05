@@ -137,7 +137,7 @@ def get_readable_message():
             msg += f"\n"
             msg += f"\n<b>᚜☻ Status:</b> <b>{download.status()}</b>|<b>Eng:</b> {download.eng()}"
             if download.status() not in [MirrorStatus.STATUS_SPLITTING, MirrorStatus.STATUS_SEEDING]:
-                msg += f"\n⌛ {get_progress_bar_string(download)} {download.progress()}"
+                msg += f"\n⌛   {get_progress_bar_string(download)} {download.progress()}"
                 msg += f"\n"
                 msg += f"\n᚜⦿ <b>Processed:</b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
                 msg += f"\n᚜⦿ <b>Speed:</b> {download.speed()}"
@@ -191,7 +191,8 @@ def get_readable_message():
                 elif 'M' in spd:
                     up_speed += float(spd.split('M')[0]) * 1048576
         bmsg = f"╭⦿ <b>CPU:</b> {cpu_percent()}% | <b>FREE:</b> {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}"
-        bmsg += f"\n│᚜⦿ <b>RAM:</b> {virtual_memory().percent}% | <b>UPTIME:</b> {get_readable_time(time() - botStartTime)}"
+        bmsg += f"\n│᚜⦿ <b>RAM:</b> {virtual_memory().percent}%"
+        bmsg += f"\n│᚜⦿ <b>UPTIME:</b> {get_readable_time(time() - botStartTime)}"
         bmsg += f"\n│᚜⦿ <b>UP.. SPEED:</b> {get_readable_file_size(up_speed)}/s"
         bmsg += f"\n╰⦿ <b>DOWN.. SPEED:</b> {get_readable_file_size(dl_speed)}/s"
         buttons = ButtonMaker()
